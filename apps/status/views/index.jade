@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  table
+    h1 Tutonic V3 Page Designs Status
+    tbody
+      tr
+        th(scope='row') Need
+        td= need + '%'
+      tr
+        th(scope='row') Final
+        td= final + '%'
+      tr
+        th(scope='row') Draft
+        td= draft + '%'
+  #holder
