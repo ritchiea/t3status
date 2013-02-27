@@ -1,7 +1,18 @@
 Raphael.fn.pieChart = function (cx, cy, r, values, labels, stroke) {
     var paper = this,
         rad = Math.PI / 180,
+        hues = [1.2,1,.33],
         chart = this.set();
+    function getColor(start) {
+      if (start > .75) {
+        return 1; }
+      else if ( (start > .40) && (start < .75) ) {
+        return .36; 
+      }
+      else {
+        return 1.2;
+      }
+    }
     function sector(cx, cy, r, startAngle, endAngle, params) {
         var x1 = cx + r * Math.cos(-startAngle * rad),
             x2 = cx + r * Math.cos(-endAngle * rad),
@@ -16,10 +27,10 @@ Raphael.fn.pieChart = function (cx, cy, r, values, labels, stroke) {
             var value = values[j],
                 angleplus = 360 * value / total,
                 popangle = angle + (angleplus / 2),
-                color = Raphael.hsb(start, .75, 1),
+                color = Raphael.hsb(getColor(start), .75, 1),
                 ms = 500,
                 delta = 30,
-                bcolor = Raphael.hsb(start, 1, 1),
+                bcolor = Raphael.hsb(getColor(start), 1, 1),
                 p = sector(cx, cy, r, angle, angle + angleplus, {fill: "90-" + bcolor + "-" + color, stroke: stroke, "stroke-width": 3}),
                 txt = paper.text(cx + (r + delta + 55) * Math.cos(-popangle * rad), cy + (r + delta + 25) * Math.sin(-popangle * rad), labels[j]).attr({fill: bcolor, stroke: "none", opacity: 0, "font-size": 20});
             p.mouseover(function () {
