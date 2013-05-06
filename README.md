@@ -1,4 +1,4 @@
 t3status
 ========
 
-Check progress on tutonic's v3 designs
+Node app to check progress on tutonic's v3 designs
